@@ -10,19 +10,38 @@ body {
 .form {
   display: grid;
   gap: 10px;
+  justify-items: center;
 }
 
-.buttom-id-sent {
+.message {
+  align-items: center;
+  color: #006400;
+  display: none;
+  font-size: 5vh;
+  font-weight: 500;
+  justify-content: center;
+  text-align: center;
+}
+
+.message__active {
+  display: flex;
+}
+
+button {
   background-color: #4865ff;
   border-radius: 6px;
   border: none;
   color: #fff;
   font-family: Open Sans, sans-serif;
-  font-weight: 500;
   font-size: 16px;
-  text-align: center;
+  font-weight: 500;
   padding: 8px;
+  text-align: center;
   width: 200px;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 .input-id-sent {
