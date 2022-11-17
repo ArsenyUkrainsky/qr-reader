@@ -2,7 +2,7 @@ const appForm = document.querySelector('#qr-form')
 const message = appForm.querySelector('.message')
 
 function onSucccess(data) {
-  console.log('Succcess: ', data)
+  console.log('Succcess data: ', data)
   message.classList.add('message__active')
   setTimeout(() => message.classList.remove('message__active'), 500)
   const input = appForm.querySelector('input')
@@ -17,11 +17,11 @@ function onError(errorMessage) {
 function sendData(data) {
   const params = new URLSearchParams(data).toString()
   return fetch(
-    `https://script.google.com/macros/s/AKfycbzBQwHv6I2pzZIY8wF3S6_M5h18DcU8g6TWUslb3XkL/dev?${params}`,
+    `https://script.google.com/macros/s/AKfycbzd31SwgQvWKQXWKDLGdToAlIyj_PjQn5VWx5SHJI2Hk35Bb2qDlXkTAGGjyVFTDJ16sA/exec?${params}`,
     {
       method: 'POST',
       credentials: 'include',
-      // mode: 'no-cors',
+      mode: 'no-cors',
     }
   )
     .then(onSucccess)
