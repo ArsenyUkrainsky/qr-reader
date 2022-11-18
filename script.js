@@ -3,10 +3,18 @@ const message = appForm.querySelector('.message')
 
 function onSucccess(data) {
   console.log('Succcess data: ', data)
-  if (data.status === 200) {
-    message.textContent = 'болельщик зарегистрирован !'
+  const {currentDate, currentId, lastRow, success} = data
+  if (success) {
+    message.textContent = `болельщик с номером ${currentId} зарегистрирован от ${new Date(currentDate).toLocaleDateString('ru')}`
     message.classList.add('message__active')
-    setTimeout(() => message.classList.remove('message__active'), 500)
+    setTimeout(() => message.classList.remove('message__active'), 900)
+    const input = appForm.querySelector('input')
+    appForm.reset()
+    input.focus()
+  } else {
+    message.textContent = `болельщик с номером ${currentId} НЕ зарегистрирован`
+    message.classList.add('message__active_error')
+    setTimeout(() => message.classList.remove('message__active_error'), 900)
     const input = appForm.querySelector('input')
     appForm.reset()
     input.focus()
@@ -25,15 +33,22 @@ function onError(errorMessage) {
 
 function sendData(data) {
   const params = new URLSearchParams(data).toString()
+  console.log(data)
   return fetch(
-    // `https://script.google.com/macros/s/AKfycbzd31SwgQvWKQXWKDLGdToAlIyj_PjQn5VWx5SHJI2Hk35Bb2qDlXkTAGGjyVFTDJ16sA/exec?${params}`,
-    `https://script.google.com/macros/s/AKfycbxfzpJOGeHzoTmDeQaB3lV_zMOBJTyac6zyCL8eD0dwf3b42UxJUaL44JB7idG1VChunA/exec?${params}`,
+    'https://script.google.com/macros/s/AKfycbwV-uQf-EsF9LyiIE0N_Rt1jQcqOVNiuAkeL4pFcOq4rfmBVBQ148BgjU5G4XTsJq3v/exec',
     {
       method: 'POST',
+      redirect: 'follow',
+      body: params,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
       // credentials: 'include',
       // mode: 'no-cors',
+      
     }
   )
+    .then((response) => response.json())
     .then(onSucccess)
     .catch(onError)
 }
