@@ -27,6 +27,12 @@ body {
   display: flex;
 }
 
+.message__active_error {
+  display: flex;
+  color: #ff0000;
+  font-weight: 600;
+}
+
 button {
   background-color: #4865ff;
   border-radius: 6px;

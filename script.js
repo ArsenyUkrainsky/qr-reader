@@ -3,25 +3,35 @@ const message = appForm.querySelector('.message')
 
 function onSucccess(data) {
   console.log('Succcess data: ', data)
-  message.classList.add('message__active')
-  setTimeout(() => message.classList.remove('message__active'), 500)
+  if (data.status === 200) {
+    message.textContent = 'болельщик зарегистрирован !'
+    message.classList.add('message__active')
+    setTimeout(() => message.classList.remove('message__active'), 500)
+    const input = appForm.querySelector('input')
+    appForm.reset()
+    input.focus()
+  }
+}
+
+function onError(errorMessage) {
+  console.log('errorMessage: ', errorMessage)
+  message.textContent = 'Ошибка !'
+  message.classList.add('message__active_error')
+  setTimeout(() => message.classList.remove('message__active_error'), 900)
   const input = appForm.querySelector('input')
   appForm.reset()
   input.focus()
 }
 
-function onError(errorMessage) {
-  console.log(errorMessage)
-}
-
 function sendData(data) {
   const params = new URLSearchParams(data).toString()
   return fetch(
-    `https://script.google.com/macros/s/AKfycbzd31SwgQvWKQXWKDLGdToAlIyj_PjQn5VWx5SHJI2Hk35Bb2qDlXkTAGGjyVFTDJ16sA/exec?${params}`,
+    // `https://script.google.com/macros/s/AKfycbzd31SwgQvWKQXWKDLGdToAlIyj_PjQn5VWx5SHJI2Hk35Bb2qDlXkTAGGjyVFTDJ16sA/exec?${params}`,
+    `https://script.google.com/macros/s/AKfycbxfzpJOGeHzoTmDeQaB3lV_zMOBJTyac6zyCL8eD0dwf3b42UxJUaL44JB7idG1VChunA/exec?${params}`,
     {
       method: 'POST',
-      credentials: 'include',
-      mode: 'no-cors',
+      // credentials: 'include',
+      // mode: 'no-cors',
     }
   )
     .then(onSucccess)
@@ -30,7 +40,7 @@ function sendData(data) {
 
 function onScanSuccess(decodedText, decodedResult) {
   console.log('decodedText', decodedText, decodedResult)
-  sendData({ fanid: decodedText} )
+  sendData({ fanid: decodedText })
 }
 
 function onScanError(errorMessage) {
