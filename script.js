@@ -5,7 +5,7 @@ function onSucccess(data) {
   console.log('Succcess data: ', data)
   const {currentDate, currentId, lastRow, success} = data
   if (success) {
-    message.textContent = `болельщик с номером ${currentId} зарегистрирован от ${currentDate}`
+    message.textContent = `болельщик с номером ${currentId} зарегистрирован !`
     message.classList.add('message__active')
     setTimeout(() => message.classList.remove('message__active'), 900)
     const input = appForm.querySelector('input')
