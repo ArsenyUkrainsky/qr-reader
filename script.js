@@ -35,7 +35,7 @@ function sendData(data) {
   const params = new URLSearchParams(data).toString()
   console.log(data)
   return fetch(
-    'https://script.google.com/macros/s/AKfycbwV-uQf-EsF9LyiIE0N_Rt1jQcqOVNiuAkeL4pFcOq4rfmBVBQ148BgjU5G4XTsJq3v/exec',
+    'https://script.google.com/macros/s/AKfycbzzCb0fvO2aPwOWUOTUwHhx5PTUr3WsrrRQ9ys2ikQNb8XXxR20whkMO68MstRbzPIFOw/exec',
     {
       method: 'POST',
       redirect: 'follow',
