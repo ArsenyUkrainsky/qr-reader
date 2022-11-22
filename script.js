@@ -55,7 +55,7 @@ function sendData(data) {
 
 function onScanSuccess(decodedText, decodedResult) {
   console.log('decodedText', decodedText, decodedResult)
-  sendData({ fanid: decodedText })
+  sendData({ id: decodedText })
 }
 
 function onScanError(errorMessage) {
