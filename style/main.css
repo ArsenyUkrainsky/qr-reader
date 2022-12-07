@@ -140,4 +140,5 @@ button:hover {
   justify-content: center;
   margin: 0 auto;
   overflow: auto;
+  max-width: 320px;
 }
