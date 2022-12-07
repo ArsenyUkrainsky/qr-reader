@@ -1,6 +1,7 @@
 body {
   background-color: #eef0ff;
   width: 100%;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
@@ -141,8 +142,4 @@ button:hover {
   margin: 0 auto;
   overflow: auto;
   max-width: 300px;
-}
-
-#qr-reader {
-  max-height: 90vh;
 }
