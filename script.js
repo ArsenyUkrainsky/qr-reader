@@ -69,7 +69,7 @@ let config = {
   facingMode: "environment"
 }
 
-var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', config)
+var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', config, true)
 
 html5QrcodeScanner.render(onScanSuccess, onScanError)
 
