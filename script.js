@@ -69,7 +69,7 @@ var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', {
   showTorchButtonIfSupported: true,
   supportedScanTypes: [SCAN_TYPE_CAMERA],
 })
-debugger
+
 html5QrcodeScanner.render(onScanSuccess, onScanError)
 
 // form action
