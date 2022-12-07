@@ -65,12 +65,12 @@ let config = {
   fps: 10, 
   qrbox: 250,  
   verbose: true,
-  rememberLastUsedCamera: true,
+  rememberLastUsedCamera: false,
   showTorchButtonIfSupported: true,
   supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
 }
 
-var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', config, false)
+var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', config)
 
 html5QrcodeScanner.render(onScanSuccess, onScanError)
 
