@@ -61,9 +61,12 @@ function onScanError(errorMessage) {
   console.log('error', errorMessage)
 }
 
-var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', { fps: 10, qrbox: {width: 250, height: 250} }, false)
+// Easy Mode
+const html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', { fps: 10, qrbox: {width: 250, height: 250} }, true)
 
-html5QrcodeScanner.render(onScanSuccess, onScanError)
+// Pro Mode
+const config = { fps: 10, qrbox: {width: 250, height: 250} };
+// const html5QrCode = new Html5Qrcode('qr-reader', { formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE ] }, true);
 
 // form action
 function serializeForm(formNode) {
@@ -90,18 +93,18 @@ appForm.addEventListener('submit', handleFormSubmit)
 appForm.addEventListener('input', checkValidity)
 
 // qr-reader style
-const qrReader = document.querySelector('#qr-reader')
-qrReader.firstElementChild.querySelector('img').remove()
-qrReader.removeAttribute('style')
+// const qrReader = document.querySelector('#qr-reader')
+// qrReader.firstElementChild.querySelector('img').remove()
+// qrReader.removeAttribute('style')
 
 // const swaplink = document.querySelector('#qr-reader__dashboard_section_swaplink')
 // swaplink.style = 'opacity: 0'
 
-const button = document.querySelector('#qr-reader__camera_permission_button')
-if (button) {
-  button.textContent = 'Запросить разрешение камеры'
-  button.classList.add('buttom-id-sent')
-}
+// const button = document.querySelector('#qr-reader__camera_permission_button')
+// if (button) {
+//   button.textContent = 'Запросить разрешение камеры'
+//   button.classList.add('buttom-id-sent')
+// }
 
 // authorization-form
 const form = document.querySelector('#authorization-form')
@@ -115,9 +118,13 @@ function handleAuthorization(e) {
   if (login === 'admin' && password === '668Lmn') {
     qrPage.classList.add('qr-page_visible')
     form.classList.add('authorization_disabled')
+
+    html5QrcodeScanner.render(onScanSuccess, onScanError)
+    // html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess, onScanError)
   } else {
     qrPage.classList.remove('qr-page_visible')
     errorMessage.classList.add('authorization__error_visible')
+    html5QrCode.stop()
   }
 }
 
