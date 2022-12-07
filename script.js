@@ -61,12 +61,7 @@ function onScanError(errorMessage) {
   console.log('error', errorMessage)
 }
 
-let config = {
-  fps: 10, 
-  qrbox: {width: 250, height: 250},
-}
-
-var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', config, true)
+var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', { fps: 10, qrbox: {width: 250, height: 250} }, false)
 
 html5QrcodeScanner.render(onScanSuccess, onScanError)
 
