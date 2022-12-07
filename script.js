@@ -63,9 +63,7 @@ function onScanError(errorMessage) {
 
 let config = {
   fps: 10, 
-  qrbox: 250,  
-  verbose: true,
-  rememberLastUsedCamera: false,
+  qrbox: 250,
   showTorchButtonIfSupported: true,
   supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
 }
