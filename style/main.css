@@ -141,5 +141,8 @@ button:hover {
   margin: 0 auto;
   overflow: auto;
   max-width: 300px;
-  max-height: 365px;
+}
+
+#qr-reader {
+  max-height: 195px;
 }
