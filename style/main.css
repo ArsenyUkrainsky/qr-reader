@@ -1,10 +1,16 @@
 body {
-  align-items: center;
   background-color: #eef0ff;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
-  flex-direction: column;
-  justify-items: center;
-  padding: 42px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 0;
+  margin: 10px auto;
 }
 
 .form {
@@ -14,9 +20,9 @@ body {
 }
 
 .message {
+  display: none;
   align-items: center;
   color: #006400;
-  display: none;
   font-size: 5vh;
   font-weight: 500;
   justify-content: center;
@@ -66,14 +72,11 @@ button:hover {
 .qr-header {
   font-family: Open Sans, sans-serif;
   font-size: 20px;
-  margin: 50px auto 10px;
   text-align: center;
 }
 
 .link {
   font-size: 16px;
-  margin-bottom: 20px;
-  margin-top: 20px;
 }
 
 .frame {
@@ -84,4 +87,56 @@ button:hover {
 .linktext {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+.authorization {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 12px;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0 auto;
+  max-width: 240px;
+  padding: 16px 24px 0;
+  width: 100%;
+}
+
+.authorization_disabled {
+  display: none;
+  visibility: hidden;
+}
+
+.authorization__field {
+  border: none;
+  border-bottom: 1px solid #808080;
+  outline: none;
+  padding: 2px;
+  width: 100%;
+}
+
+.authorization__error {
+  color: red;
+  font-size: 0;
+  opacity: 0;
+  transition: 0.9s ease-out;
+  margin-bottom: 4px;
+}
+
+.authorization__error_visible {
+  font-size: 16px;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.qr-page {
+  display: none;
+}
+
+.qr-page_visible {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
 }

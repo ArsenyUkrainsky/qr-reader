@@ -1,6 +1,4 @@
 <html lang="en">
-<!-- https://script.google.com/macros/s/AKfycbzd31SwgQvWKQXWKDLGdToAlIyj_PjQn5VWx5SHJI2Hk35Bb2qDlXkTAGGjyVFTDJ16sA/exec -->
-<!-- https://docs.google.com/spreadsheets/d/1Kh-IwHxRugwEQbIjmuGXjZnsUkz4InFd8MFgjaZGpYg/edit#gid=0 -->
 
 <head>
   <meta charset="utf-8">
@@ -13,7 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="icon/ms-icon-144x144.png">
-
   <link rel="apple-touch-icon" sizes="57x57" href="icon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="icon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="icon/apple-icon-72x72.png">
@@ -27,33 +24,39 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="icon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
-
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style/normalize.css">
   <link rel="stylesheet" href="style/main.css">
-
   <title>QR Code</title>
 </head>
 
 <body>
-  <div>
-    <form class="form" id="qr-form"
-      action="https://script.google.com/macros/s/AKfycbzd31SwgQvWKQXWKDLGdToAlIyj_PjQn5VWx5SHJI2Hk35Bb2qDlXkTAGGjyVFTDJ16sA/exec"
-      method="post">
-      <input class="input-id-sent" name="id" type="text" minlength="1" maxlength="3" placeholder="Введите FAN ID"
-        required autofocus></input>
-      <button>Зарегистрировать ID</button>
-      <span class="message"></span>
-    </form>
-  </div>
-  <div class="qr-header">Использовать сканирование QR-кода:</div>
-  <div id="qr-reader" style="width:250px"></div>
-  <div id="qr-reader-results"></div>
-  <div id="qr-code-full-region"></div>
-  <div class="link">
-    <a href="list.html" style="width: 50%">Просмотреть список болельщиков</a>
-  </div>
-
+  <form class="authorization" name="authorization" id="authorization-form">
+    <input type="text" minlength="3" maxlength="7" required name="login" placeholder="login"
+      class="authorization__field">
+    <input type="password" required name="password" placeholder="password" class="authorization__field">
+    <button type="submit">Войти</button>
+    <span class="authorization__error">Введите корректные данные для авторизации</span>
+  </form>
+  <section class="qr-page">
+    <div>
+      <form class="form" id="qr-form"
+        action="https://script.google.com/macros/s/AKfycbzd31SwgQvWKQXWKDLGdToAlIyj_PjQn5VWx5SHJI2Hk35Bb2qDlXkTAGGjyVFTDJ16sA/exec"
+        method="post">
+        <input class="input-id-sent" name="id" type="text" minlength="1" maxlength="3" placeholder="Введите FAN ID"
+          required autofocus></input>
+        <button>Зарегистрировать ID</button>
+        <span class="message"></span>
+      </form>
+    </div>
+    <div class="qr-header">Использовать сканирование QR-кода:</div>
+    <div id="qr-reader" style="width:250px"></div>
+    <div id="qr-reader-results"></div>
+    <div id="qr-code-full-region"></div>
+    <div class="link">
+      <a href="list.html" style="width: 50%">Просмотреть список болельщиков</a>
+    </div>
+  </section>
   <script src="https://unpkg.com/html5-qrcode"></script>
   <script src="script.js"></script>
 </body>

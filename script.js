@@ -3,7 +3,7 @@ const message = appForm.querySelector('.message')
 
 function onSucccess(data) {
   console.log('Succcess data: ', data)
-  const {currentDate, currentId, lastRow, success} = data
+  const { currentDate, currentId, lastRow, success } = data
   if (success) {
     message.textContent = `болельщик с номером ${currentId} зарегистрирован !`
     message.classList.add('message__active')
@@ -41,11 +41,10 @@ function sendData(data) {
       redirect: 'follow',
       body: params,
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
       // credentials: 'include',
       // mode: 'no-cors',
-      
     }
   )
     .then((response) => response.json())
@@ -62,7 +61,15 @@ function onScanError(errorMessage) {
   console.log('error', errorMessage)
 }
 
-var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', { fps: 10, qrbox: 250 })
+var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', { 
+  fps: 10, 
+  qrbox: 250,  
+  verbose: true,
+  rememberLastUsedCamera: false,
+  showTorchButtonIfSupported: true,
+  supportedScanTypes: [SCAN_TYPE_CAMERA],
+})
+debugger
 html5QrcodeScanner.render(onScanSuccess, onScanError)
 
 // form action
@@ -94,14 +101,34 @@ const qrReader = document.querySelector('#qr-reader')
 qrReader.firstElementChild.querySelector('img').remove()
 qrReader.removeAttribute('style')
 
-const swaplink = document.querySelector('#qr-reader__dashboard_section_swaplink')
-swaplink.style = 'opacity: 0'
+// const swaplink = document.querySelector('#qr-reader__dashboard_section_swaplink')
+// swaplink.style = 'opacity: 0'
 
 const button = document.querySelector('#qr-reader__camera_permission_button')
 if (button) {
   button.textContent = 'Запросить разрешение камеры'
   button.classList.add('buttom-id-sent')
 }
+
+// authorization-form
+const form = document.querySelector('#authorization-form')
+const qrPage = document.querySelector('.qr-page')
+const errorMessage = form.querySelector('.authorization__error')
+
+function handleAuthorization(e) {
+  e.preventDefault()
+  const {login, password} = serializeForm(form)
+  
+  if (login === 'admin' && password === '668Lmn') {
+    qrPage.classList.add('qr-page_visible')
+    form.classList.add('authorization_disabled')
+  } else {
+    qrPage.classList.remove('qr-page_visible')
+    errorMessage.classList.add('authorization__error_visible')
+  }
+}
+
+form.addEventListener('submit', handleAuthorization)
 
 // serviceWorker
 if ('serviceWorker' in navigator) {
