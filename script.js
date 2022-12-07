@@ -63,7 +63,7 @@ function onScanError(errorMessage) {
 
 let config = {
   fps: 10, 
-  qrbox: 250,
+  qrbox: 240,
 }
 
 var html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', config, true)
