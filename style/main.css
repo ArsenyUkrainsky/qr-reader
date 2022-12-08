@@ -1,16 +1,17 @@
 body {
-  background-color: #eef0ff;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   align-items: center;
-  align-content: center;
-  justify-content: center;
-  overflow: auto;
-  padding: 0;
-  margin: 10px auto;
+  background-color: #f4f6ff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  margin: 16px auto 0;
+  max-width: calc(100% - 16px);
+  min-width: 280px;
+  text-rendering: optimizeLegibility;
+  width: 100%;
 }
 
 .form {

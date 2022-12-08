@@ -62,7 +62,7 @@ function onScanError(errorMessage) {
 }
 
 // Easy Mode
-const html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', { fps: 10, qrbox: {width: 250, height: 250} }, true)
+const html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', { fps: 60, qrbox: {width: 250, height: 250} }, true)
 
 // Pro Mode
 const config = { fps: 10, qrbox: {width: 250, height: 250} };
