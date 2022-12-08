@@ -62,10 +62,13 @@ function onScanError(errorMessage) {
 }
 
 // Easy Mode
-const html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', { fps: 60, qrbox: {width: 250, height: 250} }, true)
+const html5QrcodeScanner = new Html5QrcodeScanner(
+  'qr-reader',
+  { fps: 60, qrbox: { width: 250, height: 250 } }
+)
 
 // Pro Mode
-const config = { fps: 10, qrbox: {width: 250, height: 250} };
+const config = { fps: 10, qrbox: { width: 250, height: 250 } }
 // const html5QrCode = new Html5Qrcode('qr-reader', { formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE ] }, true);
 
 // form action
@@ -106,6 +109,19 @@ appForm.addEventListener('input', checkValidity)
 //   button.classList.add('buttom-id-sent')
 // }
 
+// Функция throttle
+function throttle(callee, timeout) {
+  let timer = null
+  return function perform(...args) {
+    if (timer) return
+    timer = setTimeout(() => {
+      callee(...args)
+      clearTimeout(timer)
+      timer = null
+    }, timeout)
+  }
+}
+
 // authorization-form
 const form = document.querySelector('#authorization-form')
 const qrPage = document.querySelector('.qr-page')
@@ -113,13 +129,13 @@ const errorMessage = form.querySelector('.authorization__error')
 
 function handleAuthorization(e) {
   e.preventDefault()
-  const {login, password} = serializeForm(form)
-  
+  const { login, password } = serializeForm(form)
+
   if (login === 'admin' && password === '668Lmn') {
     qrPage.classList.add('qr-page_visible')
     form.classList.add('authorization_disabled')
 
-    html5QrcodeScanner.render(onScanSuccess, onScanError)
+    html5QrcodeScanner.render(throttle(onScanSuccess, 1500), throttle(onScanError, 3000))
     // html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess, onScanError)
   } else {
     qrPage.classList.remove('qr-page_visible')
