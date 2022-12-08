@@ -62,10 +62,10 @@ function onScanError(errorMessage) {
 }
 
 // Easy Mode
-const html5QrcodeScanner = new Html5QrcodeScanner(
-  'qr-reader',
-  { fps: 60, qrbox: { width: 250, height: 250 } }
-)
+const html5QrcodeScanner = new Html5QrcodeScanner('qr-reader', {
+  fps: 60,
+  qrbox: { width: 250, height: 250 },
+})
 
 // Pro Mode
 const config = { fps: 10, qrbox: { width: 250, height: 250 } }
@@ -132,6 +132,19 @@ function handleAuthorization(e) {
   const { login, password } = serializeForm(form)
 
   if (login === 'admin' && password === '668Lmn') {
+    window.localStorage.setItem('authorization', 'true')
+    checkAuthorization()
+  } else {
+    window.localStorage.removeItem('authorization')
+  }
+}
+
+form.addEventListener('submit', handleAuthorization)
+
+// check localStorage authorization
+function checkAuthorization() {
+  const key = window.localStorage.getItem('authorization')
+  if (key == 'true') {
     qrPage.classList.add('qr-page_visible')
     form.classList.add('authorization_disabled')
 
@@ -140,11 +153,10 @@ function handleAuthorization(e) {
   } else {
     qrPage.classList.remove('qr-page_visible')
     errorMessage.classList.add('authorization__error_visible')
-    html5QrCode.stop()
   }
 }
 
-form.addEventListener('submit', handleAuthorization)
+checkAuthorization()
 
 // serviceWorker
 if ('serviceWorker' in navigator) {
